@@ -108,10 +108,10 @@ span.chno {
 }
 
 .round {
-	-moz-border-radius: 20px; /* Firefox */
-	-webkit-border-radius: 20px; /* Safari, Chrome */
-	-khtml-border-radius: 20px; /* Konqueror */
-	border-radius: 20px; /* CSS3 */
+	-moz-border-radius: 0px; /* Firefox */
+	-webkit-border-radius: 0px; /* Safari, Chrome */
+	-khtml-border-radius: 0px; /* Konqueror */
+	border-radius: 0px; /* CSS3 */
 }
 
 div#timeline > div {
@@ -156,7 +156,7 @@ div.box {
 }
 
 div.box div {
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 div.box.backdrop {
