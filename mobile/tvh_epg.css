@@ -145,7 +145,7 @@ div.box {
 	position: absolute;
 	background: #ccc url('images/gradient.png') repeat-y right top;
 	background-size: 100% auto;
-	border-radius: 5px;
+	border-radius: 0px;
 	font-family: Arial;
 	font-size: 10pt;
 	z-index: 1;
