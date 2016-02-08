@@ -60,7 +60,7 @@ div.channelinfo {
 	min-width: 300px;
 	background-color: white;
 	font-family: Arial;
-	border-radius: 0px;
+	border-radius: 5px;
 	color: #666;
 	border:1px solid #666;
 }
@@ -108,10 +108,10 @@ span.chno {
 }
 
 .round {
-	-moz-border-radius: 0px; /* Firefox */
-	-webkit-border-radius: 0px; /* Safari, Chrome */
-	-khtml-border-radius: 0px; /* Konqueror */
-	border-radius: 0px; /* CSS3 */
+	-moz-border-radius: 20px; /* Firefox */
+	-webkit-border-radius: 20px; /* Safari, Chrome */
+	-khtml-border-radius: 20px; /* Konqueror */
+	border-radius: 20px; /* CSS3 */
 }
 
 div#timeline > div {
@@ -145,7 +145,7 @@ div.box {
 	position: absolute;
 	background: #ccc url('images/gradient.png') repeat-y right top;
 	background-size: 100% auto;
-	border-radius: 0px;
+	border-radius: 5px;
 	font-family: Arial;
 	font-size: 10pt;
 	z-index: 1;
@@ -156,7 +156,7 @@ div.box {
 }
 
 div.box div {
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 div.box.backdrop {
@@ -178,7 +178,7 @@ div.box h1 {
 }
 
 div.box {
-	/*text-shadow: 1px 1px 0px #fff;*/
+	text-shadow: 1px 1px 0px #fff;
 }
 
 div.scheduled h1 {
