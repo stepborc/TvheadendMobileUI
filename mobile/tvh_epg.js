@@ -188,13 +188,13 @@ function readEpg(response) {
 			  if (e.content_type == undefined) e.content_type = 0;
 			  e.content_type -= e.content_type % 16;
 			  html += '<div id="e_'+e.eventId+'" class="box '+e.dvrState+' ct_'+e.content_type+open+'" style="top:'+y+'px;left:'+x+'px;width:'+w+'px;height:'+lh+'px;">';
-			  html += '<div class="bgimage"><div class="head" onclick="show('+e.eventId+');">'+e.title+'';
+			  html += '<div class="bgimage"><div class="gradient"><div class="head" onclick="show('+e.eventId+');"><h1>'+e.title+'</h1>';
 			  var sub = '';
 			  if (e.subtitle != undefined && e.subtitle != e.title)
 				  sub += e.subtitle;
 			  if (e.episodeOnscreen != undefined)
 				  sub += (sub.length > 0 ? ' &mdash; ' : '') + e.episodeOnscreen;
-			  html += '<br>'+sub+'</div>';
+			  html += '<small>'+sub+'</small></div>';
 			  html += '<div class="add">'+(e.content_type==0||e.content_type==16?'<div class="poster"></div>':'')+'<h3 onclick="show('+e.id+');">'+nvl(contentGroups[e.contenttype])+'</h3><p class="desc" onclick="show('+e.eventId+');">'+nvl(e.description)+'</p>';
 			  html += '<p class="time">' + getDateTimeFromTimestamp(e.start, true) + '&ndash;' + getTimeFromTimestamp(e.stop) + ' (' + getDuration(e.stop-e.start) + l('hour.short') + ')</p>';
 			  html += '<p class="channel">' + e.channelName + ' &mdash; <a href="http://akas.imdb.org/find?q='+e.title+'" target="_blank">'+l('imdbSearch')+'</a> &mdash; <a href="http://www.themoviedb.org/search?query='+e.title+'" target="_blank">'+l('tmdbSearch')+'</a></p><br clear="all" />';
