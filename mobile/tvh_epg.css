@@ -120,7 +120,7 @@ div#timeline > div {
 	position: absolute;
 	top: 0px;
 	height: 12px;
-	box-shadow: 3px 3px 5px #666;
+	box-shadow: 3px 3px 5px #666; 
 	-webkit-box-shadow: 3px 3px 5px #666;
 }
 
@@ -131,7 +131,7 @@ div#current {
 	left: -1px;
 	height: 0px;
 	z-index: 5;
-	box-shadow: 3px 3px 3px #000;
+	box-shadow: 2px 2px 2px #000;
 }
 
 p.tmdb {
@@ -175,6 +175,12 @@ div.box.big div.head {
 div.box h1 {
 	margin: 0px 2px;
 	font-size: 10pt;
+	font-weight: normal;
+}
+
+div.box p {
+	margin: 0px 2px;
+	font-size: 10pt;
 }
 
 div.box {
@@ -184,12 +190,18 @@ div.box {
 div.scheduled h1 {
 	background: url('../icons/clock.png') no-repeat left top;
 	padding-left: 18px;
+	font-weight: normal;
 }
-
 div.recording h1 {
 	background: url('../icons/rec.png') no-repeat left top;
 	padding-left: 18px;
 }
+/* div.scheduled p {
+	background: url('../icons/clock.png') no-repeat left top;
+	padding-left: 18px;
+} */
+
+
 div.poster {
 	float:right;
 }
