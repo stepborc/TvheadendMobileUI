@@ -26,6 +26,7 @@ var loadedBackdrops = new Array();
 var posterWidth = 92;
 var backdropWidth = 780;
 var tmdbImgUrl = 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w';
+var listChannels = [];
 
 function loadEpg() {
 	doPost("api/epg/events/grid", readEpg, 'start='+start+'&limit='+limit+'&tag='+channelTags[selectedTag]);
@@ -164,48 +165,51 @@ function readEpg(response) {
 		var html = '';
 		var last = lastEpgX == undefined ? 0 : lastEpgX;
 		for (var i in response.entries) {
-			var e = response.entries[i];
-			var open = '';
-			if (document.getElementById('e_'+e.eventId) != null) {
-				open = document.getElementById('e_'+e.eventId).className.indexOf('big') > 0 ? ' big':'';
-				document.getElementById('e_'+e.eventId).outerHTML = '';
-			}
-			if (endTimes[e.stop] == undefined)
-				endTimes[e.stop] = 1;
-			else
-				endTimes[e.stop]++;
-			var w = ((e.stop-e.start)/scaleDown);
-			var x = timestampToX(e.start);
-			var y = channelToY[e.channelUuid];
-			if (x<0) {
-				w+=x;
-				x=0;
-			}
-			last = x > last ? x : last;
-			if (e.content_type == undefined) e.content_type = 0;
-			e.content_type -= e.content_type % 16;
-			html += '<div id="e_'+e.eventId+'" class="box '+e.dvrState+' ct_'+e.content_type+open+'" style="top:'+y+'px;left:'+x+'px;width:'+w+'px;height:'+lh+'px;">';
-			html += '<div class="bgimage"><div class="gradient"><div class="head" onclick="show('+e.eventId+');"><h1>'+e.title+'</h1>';
-			var sub = '';
-			if (e.subtitle != undefined && e.subtitle != e.title)
-				sub += e.subtitle;
-			if (e.episodeOnscreen != undefined)
-				sub += (sub.length > 0 ? ' &mdash; ' : '') + e.episodeOnscreen;
-			html += '<h2>'+sub+'</h2></div>';
-			html += '<div class="add">'+(e.content_type==0||e.content_type==16?'<div class="poster"></div>':'')+'<h3 onclick="show('+e.id+');">'+nvl(contentGroups[e.contenttype])+'</h3><p class="desc" onclick="show('+e.eventId+');">'+nvl(e.description)+'</p>';
-			html += '<p class="time">' + getDateTimeFromTimestamp(e.start, true) + '&ndash;' + getTimeFromTimestamp(e.stop) + ' (' + getDuration(e.stop-e.start) + l('hour.short') + ')</p>';
-			html += '<p class="channel">' + e.channelName + ' &mdash; <a href="http://akas.imdb.org/find?q='+e.title+'" target="_blank">'+l('imdbSearch')+'</a> &mdash; <a href="http://www.themoviedb.org/search?query='+e.title+'" target="_blank">'+l('tmdbSearch')+'</a></p><br clear="all" />';
-			html += '<form class="record">'+configSelect+'<br /><input type="button" value="'+l('record')+'" onclick="record('+e.eventId+',this,\''+e.channelName+'\');" /></form>';
-			html += '<form class="cancel"><input type="button" value="'+l('cancel')+'" onclick="cancel('+e.eventId+', \''+e.dvrUuid+'\', \''+e.channelName+'\');" /></form>';
-			html += '<p class="tmdb">'+l('tmdbAttribution')+'</p>';
-			html += '</div>';
-			html += '</div>';
-			html += '</div>';
-			html += '</div>';
-			if (window.chLimit[e.channelName] == undefined)
-				window.chLimit[e.channelName] = 1;
-			else
-				window.chLimit[e.channelName]++;
+		  //add the if-clause to drop all channels that are not part of the channeltag
+		  if (listChannels.indexOf(response.entries[i].channelUuid) != -1 ){
+			  var e = response.entries[i];
+			  var open = '';
+			  if (document.getElementById('e_'+e.eventId) != null) {
+				  open = document.getElementById('e_'+e.eventId).className.indexOf('big') > 0 ? ' big':'';
+				  document.getElementById('e_'+e.eventId).outerHTML = '';
+			  }
+			  if (endTimes[e.stop] == undefined)
+				  endTimes[e.stop] = 1;
+			  else
+				  endTimes[e.stop]++;
+			  var w = ((e.stop-e.start)/scaleDown);
+			  var x = timestampToX(e.start);
+			  var y = channelToY[e.channelUuid];
+			  if (x<0) {
+				  w+=x;
+				  x=0;
+			  }
+			  last = x > last ? x : last;
+			  if (e.content_type == undefined) e.content_type = 0;
+			  e.content_type -= e.content_type % 16;
+			  html += '<div id="e_'+e.eventId+'" class="box '+e.dvrState+' ct_'+e.content_type+open+'" style="top:'+y+'px;left:'+x+'px;width:'+w+'px;height:'+lh+'px;">';
+			  html += '<div class="bgimage"><div class="gradient"><div class="head" onclick="show('+e.eventId+');"><h1>'+e.title+'</h1>';
+			  var sub = '';
+			  if (e.subtitle != undefined && e.subtitle != e.title)
+				  sub += e.subtitle;
+			  if (e.episodeOnscreen != undefined)
+				  sub += (sub.length > 0 ? ' &mdash; ' : '') + e.episodeOnscreen;
+			  html += '<h2>'+sub+'</h2></div>';
+			  html += '<div class="add">'+(e.content_type==0||e.content_type==16?'<div class="poster"></div>':'')+'<h3 onclick="show('+e.id+');">'+nvl(contentGroups[e.contenttype])+'</h3><p class="desc" onclick="show('+e.eventId+');">'+nvl(e.description)+'</p>';
+			  html += '<p class="time">' + getDateTimeFromTimestamp(e.start, true) + '&ndash;' + getTimeFromTimestamp(e.stop) + ' (' + getDuration(e.stop-e.start) + l('hour.short') + ')</p>';
+			  html += '<p class="channel">' + e.channelName + ' &mdash; <a href="http://akas.imdb.org/find?q='+e.title+'" target="_blank">'+l('imdbSearch')+'</a> &mdash; <a href="http://www.themoviedb.org/search?query='+e.title+'" target="_blank">'+l('tmdbSearch')+'</a></p><br clear="all" />';
+			  html += '<form class="record">'+configSelect+'<br /><input type="button" value="'+l('record')+'" onclick="record('+e.eventId+',this,\''+e.channelName+'\');" /></form>';
+			  html += '<form class="cancel"><input type="button" value="'+l('cancel')+'" onclick="cancel('+e.eventId+', \''+e.dvrUuid+'\', \''+e.channelName+'\');" /></form>';
+			  html += '<p class="tmdb">'+l('tmdbAttribution')+'</p>';
+			  html += '</div>';
+			  html += '</div>';
+			  html += '</div>';
+			  html += '</div>';
+			  if (window.chLimit[e.channelName] == undefined)
+				  window.chLimit[e.channelName] = 1;
+			  else
+				  window.chLimit[e.channelName]++;
+		  }
 		}
 		append(html);
 		lastEpgX = last;
@@ -326,6 +330,8 @@ function readChannels(response) {
 	for (var i in channels) {
 		for (var j in channels[i]) {
 			var e = channels[i][j];
+			// add all channels of current channeltag to the list
+			listChannels.push(e.uuid);
 			var streamUrl = window.location.protocol+'//'+window.location.host+'/play/stream/channel/'+e.uuid;
 			html += '<div id="c_'+e.uuid+'" style="left:-5px;top:'+(y-1)+'px;" class="channelinfo">';
 			html += '<div class="right"><h1>'+e.name+'</h1><h2>'+icon('../icons/control_play.png') + l('liveTv')+'</h2><p>'+streamUrl+'</p>';
