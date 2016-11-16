@@ -59,11 +59,11 @@ Then copy directory
 
 	$ sudo cp -r TvheadendMobileUI/mobile/ /usr/local/share/tvheadend/src/webui/static/
 
-or create symlink
+or create symlink (notice the 'pwd'. Replace it with your base directory.
 
 	$ sudo ln -s `pwd`/TvheadendMobileUI/mobile/ /usr/local/share/tvheadend/src/webui/static/mobile
 
-The target directory may vary. It could also be /usr/share/tvheadend/src/webui/static/mobile.
+The target directory may vary. In my case a Banana Pi with Armbian Vanilla Jessie it's /usr/share/tvheadend/src/webui/static/mobile.
 
 ### OpenELEC Tvheadend add-on
 
