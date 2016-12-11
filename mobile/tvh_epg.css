@@ -1,5 +1,5 @@
 body {
-	background-color: black;
+	background-color: white;
 }
 
 div#logos {
@@ -120,7 +120,7 @@ div#timeline > div {
 	position: absolute;
 	top: 0px;
 	height: 12px;
-	box-shadow: 3px 3px 5px #666; 
+	box-shadow: 3px 3px 5px #666;
 	-webkit-box-shadow: 3px 3px 5px #666;
 }
 
