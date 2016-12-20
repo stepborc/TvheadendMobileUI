@@ -6,7 +6,7 @@ div#logos {
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	background-color: black;
+	background-color: gray;
     box-shadow: 3px 3px 5px #666;
     -webkit-box-shadow: 3px 3px 5px #666;
     width: 70px;
@@ -14,7 +14,7 @@ div#logos {
 }
 
 div#logos.black {
-	background-color: grey;
+	background-color: black;
 }
 
 div.ct_16 { background-color: #e0e0e0!important; }
