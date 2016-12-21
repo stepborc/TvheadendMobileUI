@@ -223,11 +223,15 @@ function cancel(id, dvrUuid, channel) {
 	entries[0] = dvrUuid;
 	var params = "uuid="+JSON.stringify(entries);
 	doPostWithParam("api/idnode/delete", reloadChannel, params, channel);
+	//close box when cancel is selected
+	show(id);
 }
 
 function record(id, button, channel) {
 	var params = 'event_id='+id+'&config_uuid='+button.form.config.value;
 	doPostWithParam("api/dvr/entry/create_by_event", reloadChannel, params, channel);
+	//close box when recording is selected
+	show(id);
 }
 
 function reloadChannel(response) {
@@ -300,7 +304,11 @@ function initTimeline() {
 		html += getTime(start)+'</div>';
 		start.setTime(start.getTime()+30*60*1000);
 	}
+	//preperation to create a record line, which gives an overview of recording times
+	//html1= '<div style="left:0px;width:3600000px;color=gray"></div>'; 
 	append('<div id="timeline">'+html+'</div><div id="current"></div>');
+	//preperation to create a recording line
+	//append('<div id="recordline">'+html1+'</div><div id="current"></div>');
 }
 
 function setCurrent() {
