@@ -189,12 +189,13 @@ div.box {
 
 div.scheduled h1 {
 	background: url('../icons/clock.png') no-repeat left top;
-        background-color: red;
+  background-color: red;
 	padding-left: 18px;
 	font-weight: normal;
 }
 div.recording h1 {
 	background: url('../icons/rec.png') no-repeat left top;
+	background-color: red;
 	padding-left: 18px;
 }
 /* div.scheduled p {
