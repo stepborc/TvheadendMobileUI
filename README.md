@@ -1,7 +1,9 @@
 Why forking this project
 ========================
 
-I found this project on Github while searching for a more comfortable tv program overview. I'm not interesting in the Mobile aspect of this project. I'll forked this project to get the timeline view. My goal is to add the timeline view into my fhem installation. 
+I found this project on Github while searching for a more comfortable tv program overview. I'm not interesting in the Mobile aspect of this project. I'll forked this project to get the timeline view. My goal is to add the timeline view into my fhem installation.
+
+This fork works fine with tvheadend 4.1. My goal is to get an EPG timeline and not a mobile interface. All other interfaces will be deleted in the next months.
 
 TvheadendMobileUI
 =================
