@@ -23,9 +23,10 @@ var cancelRecordingStart;
 var cancelRecordingChannel;
 var loadedPosters = new Array();
 var loadedBackdrops = new Array();
-var posterWidth = 92;
+var posterWidth = 'w92';
 var backdropWidth = 780;
-var tmdbImgUrl = 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w';
+// correct tmdb image url
+var tmdbImgUrl = 'http://image.tmdb.org/t/p/';
 var listChannels = [];
 
 function loadEpg() {
@@ -67,10 +68,10 @@ function ensureVisible(div, horiz) {
 	var scroll = /Safari/.test(navigator.userAgent) ? document.body : document.documentElement;
 	if (horiz && div.offsetLeft+div.offsetWidth > scroll.scrollLeft + window.innerWidth) {
 		scroll.scrollLeft = div.offsetLeft+div.offsetWidth - window.innerWidth+10;
-	}  
+	}
 	if (div.offsetTop+div.offsetHeight > scroll.scrollTop + window.innerHeight) {
 		scroll.scrollTop = div.offsetTop+div.offsetHeight - window.innerHeight+10;
-	} 
+	}
 	if (div.offsetTop < scroll.scrollTop) {
 		scroll.scrollTop = div.offsetTop;
 	}
@@ -79,7 +80,7 @@ function ensureVisible(div, horiz) {
 	}
 	if (horiz && div.offsetLeft+div.offsetWidth > scroll.scrollLeft + window.innerWidth) {
 		scroll.scrollLeft = div.offsetLeft+div.offsetWidth - window.innerWidth+10;
-	}  
+	}
 }
 
 function show(id) {
@@ -197,7 +198,8 @@ function readEpg(response) {
 			  html += '<small>'+sub+'</small></div>';
 			  html += '<div class="add">'+(e.content_type==0||e.content_type==16?'<div class="poster"></div>':'')+'<h3 onclick="show('+e.id+');">'+nvl(contentGroups[e.contenttype])+'</h3><p class="desc" onclick="show('+e.eventId+');">'+nvl(e.description)+'</p>';
 			  html += '<p class="time">' + getDateTimeFromTimestamp(e.start, true) + '&ndash;' + getTimeFromTimestamp(e.stop) + ' (' + getDuration(e.stop-e.start) + l('hour.short') + ')</p>';
-			  html += '<p class="channel">' + e.channelName + ' &mdash; <a href="http://akas.imdb.org/find?q='+e.title+'" target="_blank">'+l('imdbSearch')+'</a> &mdash; <a href="http://www.themoviedb.org/search?query='+e.title+'" target="_blank">'+l('tmdbSearch')+'</a></p><br clear="all" />';
+				// imdb.com is correct
+				html += '<p class="channel">' + e.channelName + ' &mdash; <a href="http://akas.imdb.com/find?q='+e.title+'" target="_blank">'+l('imdbSearch')+'</a> &mdash; <a href="http://www.themoviedb.org/search?query='+e.title+'" target="_blank">'+l('tmdbSearch')+'</a></p><br clear="all" />';
 			  html += '<form class="record">'+configSelect+'<br /><input type="button" value="'+l('record')+'" onclick="record('+e.eventId+',this,\''+e.channelName+'\');" /></form>';
 			  html += '<form class="cancel"><input type="button" value="'+l('cancel')+'" onclick="cancel('+e.eventId+', \''+e.dvrUuid+'\', \''+e.channelName+'\');" /></form>';
 			  html += '<p class="tmdb">'+l('tmdbAttribution')+'</p>';
@@ -259,7 +261,7 @@ function showTag(tag) {
 function readChannelTags(response) {
 	var sel = new Array();
 	sel[0] = '<option value="0">'+l('allChannels')+'</option>';
-	for (var i=0; i<response.entries.length; i++) {	
+	for (var i=0; i<response.entries.length; i++) {
 		var e = response.entries[i];
 		var selected= '';
 		var tag = window.location.search.replace('?','');
@@ -305,7 +307,7 @@ function initTimeline() {
 		start.setTime(start.getTime()+30*60*1000);
 	}
 	//preperation to create a record line, which gives an overview of recording times
-	//html1= '<div style="left:0px;width:3600000px;color=gray"></div>'; 
+	//html1= '<div style="left:0px;width:3600000px;color=gray"></div>';
 	append('<div id="timeline">'+html+'</div><div id="current"></div>');
 	//preperation to create a recording line
 	//append('<div id="recordline">'+html1+'</div><div id="current"></div>');
@@ -350,7 +352,7 @@ function readChannels(response) {
 			html += (e.number != undefined ? '<div class="left"><span class="chno round">'+e.number+'</span></div>' : '');
 			html += '<a class="back" target="tvheadend" href="mobile.html"><img class="back" src="images/tvheadend128.png" title="'+l('backToMobileUi')+'" width="50px" /></a>';
 			html += '</div>';
-			if (getIcon(e) != undefined && getIcon(e) != "") 
+			if (getIcon(e) != undefined && getIcon(e) != "")
 				html += '<img id="i_'+e.uuid+'" height="'+lh+'px" onclick="showChannel(\''+e.uuid+'\');" class="channel'+(window.blackLogo?' black':'')+'" src="'+getIcon(e)+'" alt="'+e.name+'" title="'+e.name+'" style="left:0px;top:'+y+'px;" />';
 			else
 				html += '<div id="i_'+e.uuid+'" onclick="showChannel(\''+e.uuid+'\');" class="channel" title="'+e.name+'" style="left:0px;top:'+y+'px;height:'+lh+'px;" />'+e.name+'</div>';
@@ -365,7 +367,7 @@ function readChannels(response) {
 }
 
 function readContentGroups(response) {
-	for (var i=0; i<response.entries.length; i++) {	
+	for (var i=0; i<response.entries.length; i++) {
 		var e = response.entries[i];
 		window.contentGroups[e.key] = e.val;
 	}
