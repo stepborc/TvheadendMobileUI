@@ -1,8 +1,8 @@
 var days = new Array(l('sunday.short'), l('monday.short'), l('tuesday.short'), l('wednesday.short'), l('thursday.short'), l('friday.short'), l('saturday.short'), l('sunday.short') );
 var longdays = new Array(l('sunday'), l('monday'), l('tuesday'), l('wednesday'), l('thursday'), l('friday'), l('saturday'), l('sunday') );
+// add your own tmdb api key
 var tmdbApiKey = '';
 
-/**
  * %ti		title
  * %su		subtitle
  * %ds_su	dash with subtitle
@@ -36,14 +36,14 @@ var layouts =
 	}
 };
 
-var layout = layouts['gborri']; 
+var layout = layouts['gborri'];
 
 function doPost(path, callback, params) {
 	doPostWithParam(path, callback, params, null);
 }
 
 function doPostWithParam(path, callback, params, ownParam) {
-	var http = new XMLHttpRequest();  	
+	var http = new XMLHttpRequest();
 	http.open("POST", "../../"+path, true);
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.setRequestHeader("Content-length", params.length);
@@ -126,7 +126,7 @@ function loadStandardTable(table, callback) {
 }
 
 function doGet(path, callback) {
-	var http = new XMLHttpRequest();  	
+	var http = new XMLHttpRequest();
 	http.open("GET", "../../"+path, true);
 	http.path = path;
 
