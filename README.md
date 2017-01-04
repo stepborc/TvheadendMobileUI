@@ -5,6 +5,8 @@ I found this project on Github while searching for a more comfortable tv program
 
 This fork works fine with tvheadend 4.1. My goal is to get an EPG timeline and not a mobile interface. All other interfaces will be deleted in the next months.
 
+To use the TMDB Feature just add your tmdb developer key to the file tvh_common.js and tvh_custom.js. There you find the variable tmdbApiKey. Add your key between the apostrophes on the right side of the equal sign.
+
 TvheadendMobileUI
 =================
 
@@ -16,7 +18,7 @@ This is a mobile web interface for the Tvheadend streaming/recording server {htt
 
 It uses the framework iUI {http://www.iui-js.org/}, which provides an iPhone-like look and feel. It works on different modern browsers
 
-Have a look at the screenshots in the folder "screenshots"! 
+Have a look at the screenshots in the folder "screenshots"!
 
 ![ScreenShot](https://raw.github.com/polini/TvheadendMobileUI/master/screenshots/home.png)
 
@@ -81,7 +83,7 @@ When you installed Tvheadend as an OpenELEC add-on, you can not use TvheadendMob
 ## Please notice
 
  - This software has beta status, so be careful. I am not responsible for missed or deleted recordings.
- - Please feel free to give feedback or to create issue tickets. 
+ - Please feel free to give feedback or to create issue tickets.
 
 ## License
 
