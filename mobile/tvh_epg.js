@@ -136,6 +136,7 @@ function show(id) {
 						loadedPosters[http.title] = p;
 						loadedBackdrops[http.title] = bd;
 						http.poster[0].innerHTML = (p!='-') ? '<img width="'+http.pw+'px" src="'+tmdbImgUrl+http.pw+p+'" />' : '&nbsp;';
+						if (p != null){
 						if (bd != '-') {
 							http.div.style.backgroundImage = 'url('+tmdbImgUrl+backdropWidth+bd+')';
 							http.div.className += ' backdrop';
@@ -146,6 +147,11 @@ function show(id) {
 								att[0].style.display = 'block';
 							}
 						}
+					}
+					else {
+						http.poster[0].innerHTML = '<img width="'+http.pw+'px" src="images/arts.png"/>';
+					}
+
 					}
 				};
 			}

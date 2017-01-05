@@ -1,7 +1,6 @@
 var days = new Array(l('sunday.short'), l('monday.short'), l('tuesday.short'), l('wednesday.short'), l('thursday.short'), l('friday.short'), l('saturday.short'), l('sunday.short') );
 var longdays = new Array(l('sunday'), l('monday'), l('tuesday'), l('wednesday'), l('thursday'), l('friday'), l('saturday'), l('sunday') );
-// add your own tmdb api key
-var tmdbApiKey = '';
+
 /**
  * %ti		title
  * %su		subtitle

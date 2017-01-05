@@ -5,7 +5,7 @@ I found this project on Github while searching for a more comfortable tv program
 
 This fork works fine with tvheadend 4.1. My goal is to get an EPG timeline and not a mobile interface. All other interfaces will be deleted in the next months.
 
-To use the TMDB Feature just add your tmdb developer key to the file tvh_common.js and tvh_custom.js. There you find the variable tmdbApiKey. Add your key between the apostrophes on the right side of the equal sign.
+To use the TMDB Feature just add your tmdb developer key to the file tvh_tmdb_key.js. There you find the variable tmdbApiKey. Add your key between the apostrophes on the right side of the equal sign.
 
 TvheadendMobileUI
 =================
