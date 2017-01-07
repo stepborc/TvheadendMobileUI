@@ -22,9 +22,9 @@ var cancelRecordingId;
 var cancelRecordingStart;
 var cancelRecordingChannel;
 var loadedPosters = new Array();
-var loadedBackdrops = new Array();
+//var loadedBackdrops = new Array();
 var posterWidth = 'w92';
-var backdropWidth = 780;
+var backdropWidth = 'w780';
 // correct tmdb image url
 var tmdbImgUrl = 'http://image.tmdb.org/t/p/';
 var listChannels = [];
@@ -102,10 +102,10 @@ function show(id) {
 			if (loadedPosters[title] != undefined) {
 				p = loadedPosters[title];
 				poster[0].innerHTML = (p!='-') ? '<img width="'+posterWidth+'px" src="'+tmdbImgUrl+posterWidth+p+'" />' : '&nbsp;';
-				if (loadedBackdrops[title] != undefined && loadedBackdrops[title] != '-') {
-					div.style.backgroundImage = 'url('+tmdbImgUrl+backdropWidth+loadedBackdrops[title]+')';
-					div.className += ' backdrop';
-				}
+				//if (loadedBackdrops[title] != undefined && loadedBackdrops[title] != '-') {
+					//div.style.backgroundImage = 'url('+tmdbImgUrl+backdropWidth+loadedBackdrops[title]+')';
+					//div.className += ' backdrop';
+				//}
 				var att = div.getElementsByClassName('tmdb');
 				if (att.length > 0) {
 					att[0].style.display = 'block';
@@ -134,13 +134,13 @@ function show(id) {
 							}
 						}
 						loadedPosters[http.title] = p;
-						loadedBackdrops[http.title] = bd;
+						//loadedBackdrops[http.title] = bd;
 						http.poster[0].innerHTML = (p!='-') ? '<img width="'+http.pw+'px" src="'+tmdbImgUrl+http.pw+p+'" />' : '&nbsp;';
 						if (p != null){
-						if (bd != '-') {
-							http.div.style.backgroundImage = 'url('+tmdbImgUrl+backdropWidth+bd+')';
-							http.div.className += ' backdrop';
-						}
+						//if (bd != '-') {
+							//http.div.style.backgroundImage = 'url('+tmdbImgUrl+backdropWidth+bd+')';
+							//http.div.className += ' backdrop';
+						//}
 						if (p!='-') {
 							var att = http.div.getElementsByClassName('tmdb');
 							if (att.length > 0) {
