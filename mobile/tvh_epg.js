@@ -149,7 +149,7 @@ function show(id) {
 						}
 					}
 					else {
-						http.poster[0].innerHTML = '<img width="'+http.pw+'px" src="images/arts.png"/>';
+						http.poster[0].innerHTML = '<img width="'+http.pw+'px" src="images/no_poster.png"/>';
 					}
 
 					}
