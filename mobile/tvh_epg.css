@@ -50,6 +50,16 @@ div#timeline {
 	font-weight: normal;
 	z-index: 4;
 }
+div#recordline {
+	position: absolute;
+	left: 0px;
+	top: 12px;
+	height: 4px;
+	/*font-size: 10px;*/
+	/*font-family: Arial;*/
+	/*font-weight: normal;*/
+	z-index: 4;
+}
 
 div.channelinfo {
 	position: absolute;
@@ -122,6 +132,15 @@ div#timeline > div {
 	height: 12px;
 	box-shadow: 3px 3px 5px #666;
 	-webkit-box-shadow: 3px 3px 5px #666;
+}
+div#recordline > div {
+	background-color: red;
+	border: 0px solid #999;
+	position: absolute;
+	top: 0px;
+	height: 4px;
+	/*box-shadow: 3px 3px 5px #666;*/
+	/*-webkit-box-shadow: 3px 3px 5px #666;*/
 }
 
 div#current {
