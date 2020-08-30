@@ -382,9 +382,10 @@ function readChannels(response) {
             listChannels.push(e.uuid);
             var streamUrl = window.location.protocol + '//' + window.location.host + '/play/stream/channel/' + e.uuid;
             html += '<div id="c_' + e.uuid + '" style="left:-5px;top:' + (y - 1) + 'px;" class="channelinfo">';
-            html += '<div class="right"><h1>' + e.name + '</h1><h2>' + icon('../icons/control_play.png') + l('liveTv') + '</h2><p>' + streamUrl + '</p>';
-            html += '<p><a target="_blank" href="' + streamUrl + '"><button>HTTP</button></a>';
-            html += '<a target="_blank" href="buzzplayer://' + streamUrl + '"><button>Buzzplayer</button></a></p>';
+            //html += '<div class="right"><h1>' + e.name + '</h1><h2>' + icon('../icons/control_play.png') + l('liveTv') + '</h2><p>' + streamUrl + '</p>';
+            html += '<div class="right"><h1>' + e.name + '</h1><h2>' + icon('../icons/control_play.png') + '<a target="_blank" href="' + streamUrl + '">Live TV</a>' + '</h2><p>' + streamUrl + '</p>';
+            htm"l += '<p><a target="_blank" href="' + streamUrl + '"><button>HTTP</button></a>';
+            htm"l += '<a target="_blank" href="buzzplayer://' + streamUrl + '"><button>Buzzplayer</button></a></p>';
             html += '<hr><h2>' + icon('../icons/channel_tags.png') + l('tags') + '</h2><p>' + tagSelect + '</p>';
             html += '</div>';
             html += (e.number != undefined ? '<div class="left"><span class="chno round">' + e.number + '</span></div>' : '');
